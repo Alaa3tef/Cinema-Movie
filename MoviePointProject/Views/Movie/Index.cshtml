@@ -1,0 +1,96 @@
+﻿@model IEnumerable<MoviePoint.Models.Movie>
+
+@{
+	Layout = "_NavAndFooterLayout";
+	ViewData["Title"] = "Movies";
+}
+
+<section class="breadcrumb-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="breadcrumb-area-content">
+					<h1>Movies Page</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="portfolio-area pt-60">
+	<div class="container">
+		@if(User.IsInRole("Admin"))
+		{
+			<div class="mx-auto text-center col-md-4">
+				<a class="theme-btn" style="width:100%;" asp-action="Insert" asp-controller="Movie">Add New Movie</a>
+			</div>
+		}
+		
+		<div class="row portfolio-item">
+			@foreach (var item in Model)
+			{
+				<div class="col-lg-3 col-md-4 col-sm-12 soon released">
+					<div style="margin-bottom:20px" class="single-portfolio">
+						<div class="single-portfolio-img">
+							<img src="@item.ImageUrl" alt="portfolio" />
+						</div>
+						<div class="portfolio-content mb-3">
+							<h2><a asp-action="Details" asp-controller="Movie" asp-route-Id="@item.Id">@item.Name</a></h2>
+							<div class="review">
+								<div class="author-review">
+									<i class="icofont icofont-star"></i>
+									<i class="icofont icofont-star"></i>
+									<i class="icofont icofont-star"></i>
+									<i class="icofont icofont-star"></i>
+									<i class="icofont icofont-star"></i>
+								</div>
+								<h4>180k voters</h4>
+							</div>
+						</div>
+						@if (User.IsInRole("Admin"))
+						{
+							<div class="d-flex justify-content-around">
+								<a class="theme-btn" asp-action="Update" asp-controller="Movie" asp-route-id="@item.Id">Edit</a>
+								<a class="theme-btn" asp-action="Delete" asp-controller="Movie" asp-route-id="@item.Id">Delete</a>
+							</div>
+						}
+						
+					</div>
+
+				</div>
+			}
+		</div>
+	</div>
+</section>
+
+<section class="video ptb-90">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="section-title pb-20">
+					<h1><i class="icofont icofont-film"></i> Trailers & Videos</h1>
+				</div>
+			</div>
+		</div>
+		<hr />
+		<div class="row">
+			<div class="col-md-12">
+				<div class="video-slider mt-20">
+					@foreach(var item2 in Model)
+					{
+						<div class="video-area">
+							<img src="@item2.ImageUrl" alt="video" />
+							<a href="@item2.videoURL" class="popup-youtube">
+								<i class="icofont icofont-ui-play"></i>
+							</a>
+						</div>
+					}					
+				</div>
+			</div>
+		</div>
+	</div>
+</section><!-- video section end -->
+
+
+
+

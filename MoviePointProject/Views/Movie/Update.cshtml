@@ -1,0 +1,101 @@
+﻿@using MoviePoint.ViewModel.Enum;
+@model MoviePoint.ViewModel.MoiveViewModel
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "_NavAndFooterLayout";
+    SelectList prodlist = new SelectList(Model.producers, "Id", "FullName");
+    SelectList cinemalist = new SelectList(Model.cinemas, "Id", "Name");
+    SelectList actorlist = new SelectList(Model.AllActors, "ID", "FullName");
+}
+
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-area-content">
+                    <h1>Edit Movie Page</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row" style="position:relative">
+        <div class="col-md-5 mb-2 mx-auto">
+            <form asp-action="Update" style="position: relative;top: 50px;">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="videoURL" class="control-label"></label>
+                    <input asp-for="videoURL" class="form-control" />
+                    <span asp-validation-for="videoURL" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageUrl" class="control-label"></label>
+                    <input asp-for="ImageUrl" class="form-control" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <input asp-for="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndtDate" class="control-label"></label>
+                    <input asp-for="EndtDate" class="form-control" />
+                    <span asp-validation-for="EndtDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Category" class="control-label"></label>
+                    <select asp-for="Category" class="form-control" asp-items="Html.GetEnumSelectList<MovieCategory>()"></select>
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CinemaID" class="control-label"></label>
+                    <select asp-for="CinemaID" class="form-control" asp-items="cinemalist"></select>
+                    <span asp-validation-for="CinemaID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Actors" class="control-label"></label>
+                    <select asp-for="Actors" class="form-control" asp-items="actorlist" multiple></select>
+                    <span asp-validation-for="Actors" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProducerID" class="control-label"></label>
+                    <select asp-for="ProducerID" class="form-control" asp-items="prodlist"></select>
+                    <span asp-validation-for="ProducerID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Edit" class="theme-btn mb-3" />
+                </div>
+                <div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    @*    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>*@
+}

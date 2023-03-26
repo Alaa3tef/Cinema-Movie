@@ -1,0 +1,67 @@
+﻿@using MoviePoint.logic.ViewModel
+@model List<TicketsViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_NavAndFooterLayout";
+}
+
+
+<section class="breadcrumb-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="breadcrumb-area-content">
+					<h1>Tickets Page</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="portfolio-area pt-60">
+	<div class="container">
+		
+		<div class="row portfolio-item">
+			<table class="table">
+				<thead>
+					
+				<tr>
+					<th>Movie Name</th>
+					<th>Cinema Name</th>
+					<th>Ticket Price</th>
+					<th>Quantity</th>
+					<th>Total Price</th>
+					<th>User Name</th>
+
+
+				</tr>
+				</thead>
+				<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>@item.MovieName</td>
+						<td>@item.CienmaName</td>
+						<td>@item.price</td>
+						<td>@item.Quantity</td>
+						<th>@item.TotalPrice</th>
+						<td>@item.userName</td>
+
+					</tr>
+				}
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+</section>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+	@*    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>*@
+}
+
+
